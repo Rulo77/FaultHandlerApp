@@ -1,0 +1,66 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+    <mat-drawer class="sideDrawer" #drawer mode="side">
+        <!-- Interior del side bar -->
+        <div class="drawerCont">
+            <div class="profileCont">
+                <!-- Seccion de la imagen de perfil y nombre de usuario -->
+                <div class="profileImgCont">
+                    <div class="imgCont">
+                        <img class="userImg" src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Pic.png"
+                            alt="logo">
+                    </div>
+                </div>
+                <div>
+                    <p>{{username}}</p>
+                </div>
+            </div>
+
+            <div class="nabBtns">
+                <ul class="btnList">
+                    <li>
+                        <a id="consultas" (click)="redirect('consultas')" class="btnListado" mat-raised-button>
+                            <mat-icon>chrome_reader_mode</mat-icon>
+                            Maquinas
+                        </a>
+                    </li>
+                    <li>
+                        <button id="registroK9" (click)="redirect('registroK9')" class="btnListado" mat-raised-button>
+                            <mat-icon>date_range</mat-icon>
+                            Tablillas
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btnListado" mat-raised-button>
+                            <mat-icon>settings</mat-icon>
+                            CONFIGURACION
+                        </button>
+                    </li>
+                    <li>
+                        <button id="login" (click)="cerrarSesion()" class="logout">
+                            <mat-icon>power_settings_new</mat-icon>
+                            <h6 class="cerrarH6">CERRAR SESIÓN</h6>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="upBar">
+
+            <button class="burgerBtn" mat-raised-button
+                (click)="drawer.toggle()"><mat-icon>view_headline</mat-icon></button>
+        </div>
+
+        <!-- <router-outlet id="outler">
+            <mat-toolbar class="titulo">
+            </mat-toolbar>
+        </router-outlet> -->
+
+    </mat-drawer-content>
+</mat-drawer-container>
+<div class="loadBack" id="loadBack">
+    <div class="loading">
+        <img class="img" id="loadingPanel" src="assets/resources/loading/loadAnimation.gif" alt="">
+    </div>
+</div>

@@ -4,7 +4,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon'
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 menu: []  = [
   {
     name: "Perfil",
@@ -21,13 +21,15 @@ menu: []  = [
   selector: 'app-sidebar',
   imports: [
     MatSidenavModule,
-     MatFormFieldModule,
-      MatSelectModule, 
-      MatButtonModule, 
-      MatIconModule
+    MatFormFieldModule,
+    MatSelectModule, 
+    MatButtonModule, 
+    MatIconModule,
+    RouterLink,
+    RouterOutlet
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
   isExpanded = false;
@@ -63,7 +65,7 @@ export class SidebarComponent implements OnInit {
   }
 
   redirect(id: string) {
- 
+    this.router.navigate([id]);
   }
 
   cerrarSesion() {
@@ -72,5 +74,17 @@ export class SidebarComponent implements OnInit {
 
   click(){
     console.log('click')
+  }
+
+  toggleSidebar() {
+    this.isExpanded = !this.isExpanded;
+  }
+
+  expandSidebar() {
+    this.isExpanded = true;
+  }
+
+  collapseSidebar() {
+    this.isExpanded = false;
   }
 }

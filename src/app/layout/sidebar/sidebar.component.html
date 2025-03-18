@@ -1,5 +1,6 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer class="sideDrawer" #drawer mode="side">
+    <mat-drawer class="sideDrawer" [class.expanded]="isExpanded" #drawer mode="side" opened (mouseenter)="expandSidebar()" (mouseleave)="collapseSidebar()">
+        
         <!-- Interior del side bar -->
         <div class="drawerCont">
             <div class="profileCont">
@@ -18,45 +19,38 @@
             <div class="nabBtns">
                 <ul class="btnList">
                     <li>
-                        <a id="consultas" (click)="redirect('consultas')" class="btnListado" mat-raised-button>
+                        <a id="consultas" (click)="redirect('machines')" class="btnListado" mat-raised-button>
                             <mat-icon>chrome_reader_mode</mat-icon>
-                            Maquinas
+                            <span>Maquinas</span>
                         </a>
                     </li>
                     <li>
-                        <button id="registroK9" (click)="redirect('registroK9')" class="btnListado" mat-raised-button>
+                        <a class="btnListado" routerLink="tablillas" mat-raised-button>
                             <mat-icon>date_range</mat-icon>
-                            Tablillas
-                        </button>
+                            <span>Tablillas</span>
+                        </a>
                     </li>
                     <li>
-                        <button class="btnListado" mat-raised-button>
+                        <a class="btnListado" (click)="redirect('config')" mat-raised-button>
                             <mat-icon>settings</mat-icon>
-                            CONFIGURACION
-                        </button>
-                    </li>
-                    <li>
-                        <button id="login" (click)="cerrarSesion()" class="logout">
-                            <mat-icon>power_settings_new</mat-icon>
-                            <h6 class="cerrarH6">CERRAR SESIÓN</h6>
-                        </button>
+                            <span>CONFIGURACION</span>
+                        </a>
                     </li>
                 </ul>
+            </div>
+            <div class="logout-container">
+                <button id="login" (click)="cerrarSesion()" class="logout">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <h6 class="cerrarH6">CERRAR SESIÓN</h6>
+                </button>
             </div>
         </div>
     </mat-drawer>
     <mat-drawer-content>
-        <div class="upBar">
-
-            <button class="burgerBtn" mat-raised-button
-                (click)="drawer.toggle()"><mat-icon>view_headline</mat-icon></button>
+        <div class="main-content">
+            <router-outlet></router-outlet>
         </div>
-
-        <!-- <router-outlet id="outler">
-            <mat-toolbar class="titulo">
-            </mat-toolbar>
-        </router-outlet> -->
-
+   
     </mat-drawer-content>
 </mat-drawer-container>
 <div class="loadBack" id="loadBack">

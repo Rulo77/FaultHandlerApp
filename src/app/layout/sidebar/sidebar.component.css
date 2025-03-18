@@ -1,7 +1,7 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    /* position: absolute; */
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -11,8 +11,18 @@
 .mat-drawer-content {
     overflow: auto;
     height: 100dvh !important;
+    margin-left: 70px !important;
+    transition: margin-left 0.3s ease;
 }
 
+.expanded ~ .mat-drawer-content {
+    margin-left: 230px !important;
+}
+
+.mat-drawer {
+    transition: width 0.3s ease;
+    border-radius: 0 !important;
+}
 
 ::ng-deep .mat-tab-body-content {
     height: 100vh !important;
@@ -50,8 +60,17 @@
    */
 
 .sideDrawer {
-    width: 230px;
+    width: 70px;
     background-color: #4F4F4F;
+    transition: width 0.3s ease;
+    border-radius: 0 !important;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.sideDrawer.expanded {
+    width: 230px;
 }
 
 .profileImgCont {
@@ -71,7 +90,6 @@
     border: white 2px solid;
     background-color: white;
     overflow: hidden;
-    ;
 }
 
 .userImg {
@@ -85,8 +103,8 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
     align-content: baseline;
 }
 
@@ -100,14 +118,15 @@ mat-toolbar {
     padding: 10px;
     background-color: #003366;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    box-shadow: 0px -20px 6px 21px rgb(0 0 0 / 37%); 
+    box-shadow: 0px -20px 6px 21px rgb(0 0 0 / 37%);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .burgerBtn {
-    background-color: transparent !important;
-    box-shadow: none !important;
+    display: none;
 }
 
 .profileCont {
@@ -122,57 +141,138 @@ mat-toolbar {
     justify-content: center;
     align-items: center;
     gap: 15px;
+    overflow: hidden;
 }
 
+.profileCont p {
+    display: none;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.expanded .profileCont p {
+    display: block;
+}
 
 .nabBtns {
     width: 100%;
+    flex-grow: 1;
 }
 
 .btnList {
     list-style-type: none;
     padding: 0;
     color: white;
-
+    margin: 0;
 }
 
+.logout-container {
+    width: 100%;
+    margin-top: auto;
+}
 
-
-.btnListado,
 .logout {
     width: 100% !important;
     height: 70px !important;
-    /* border-radius: 0 !important; */
-    margin-bottom: -10px;
+    margin-bottom: 0;
     background-color: #1c3660;
     color: white;
     box-shadow: none !important;
     transition: all ease-in-out .3s;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 16px;
+    padding: 0 24px;
     cursor: pointer;
+    border-radius: 0 !important;
+    border: none;
+    position: relative;
+    bottom: 0;
+}
+
+.sideDrawer:not(.expanded) .btnListado,
+.sideDrawer:not(.expanded) .logout {
+    justify-content: center;
+    padding: 0;
+}
+
+.sideDrawer:not(.expanded) .btnListado mat-icon,
+.sideDrawer:not(.expanded) .logout mat-icon {
+    margin: 0;
+}
+
+.btnListado mat-icon,
+.logout mat-icon {
+    margin-right: 0;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.btnListado span,
+.logout h6 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 24px;
+    color: white;
+}
+
+.btnListado span:not(.material-icons),
+.logout h6,
+.btnListado mat-icon + text {
+    display: none;
+    white-space: nowrap;
+}
+
+.expanded .btnListado span:not(.material-icons),
+.expanded .logout h6,
+.expanded .btnListado mat-icon + text {
+    display: block;
+}
+
+.btnListado {
+    width: 100% !important;
+    height: 70px !important;
+    margin-bottom: 0;
+    background-color: #1c3660 !important;
+    color: white !important;
+    box-shadow: none !important;
+    transition: all ease-in-out .3s;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    cursor: pointer;
+    border-radius: 0 !important;
+    border: none !important;
+    text-decoration: none;
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+    background-color: #4f4f4f !important;
+    color: white !important;
 }
 
 .btnListado:hover {
     filter: brightness(1.5);
     color: #e5e8eec4;
+    background-color: #1c3660 !important;
 }
 
-.logout {
-    position: absolute;
-    bottom: 3px;
-    font-size: 12px;
-    padding: 5px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    display: block;
-    margin-bottom: 0 !important;
+.btnList li {
+    margin: 0;
+    padding: 0;
 }
 
-.cerrarH6 {
-    margin: 0 !important;
+.btnList li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
 }
 
 .logout:hover {
@@ -187,7 +287,17 @@ mat-toolbar {
     justify-content: center;
     align-items: center;
     backdrop-filter: brightness(.3) blur(4px);
-    z-index: 125556454563;
     width: 100vw;
     height: 100vh;
+    z-index: 125556454563 !important;
+}
+
+.main-content {
+    padding: 20px;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+}
+
+::ng-deep .mat-drawer {
+    border-radius: 0 !important;
 }

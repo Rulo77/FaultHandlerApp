@@ -5,18 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon'
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-menu: []  = [
-  {
-    name: "Perfil",
-    redirectTo: "/perfil",
-    icon: "person-outline"
-  },
-  {
-    name: "Ayuda",
-    redirectTo: "/ayuda",
-    icon: "help-circle-outline"
-  },
-]
+
 @Component({
   selector: 'app-sidebar',
   imports: [
@@ -40,9 +29,6 @@ export class SidebarComponent implements OnInit {
   username = 'Raul Gomez';
   title = 'ClientApp';
 
-  // nombreUsuario: string;
-  // menus: MenuModulo[];
-  cantidadMenu: boolean[] = [];
 
 
   constructor(

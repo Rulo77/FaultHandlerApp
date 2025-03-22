@@ -7,20 +7,24 @@ import { MachinesComponent } from './pages/machines/machines.component';
 export const routes: Routes = [
     {
         path: '',
-        component:  SidebarComponent,
+        loadComponent: () => import('./layout/sidebar/sidebar.component').then(m => m.SidebarComponent),
+       // component:  SidebarComponent,
         canActivate: [],
         children: [
           {
             path: 'tablillas',
-            component:  TablillasComponent
+            loadComponent: () => import('./pages/tablillas/tablillas.component').then(m => m.TablillasComponent),
+           // component:  TablillasComponent
           },
           {
             path: 'config',
-            component:  ConfigComponent
+            loadComponent: () => import('./pages/config/config.component').then(m => m.ConfigComponent),
+           // component:  ConfigComponent
           },
           {
             path: 'machines',
-            component:  MachinesComponent
+            loadComponent: () => import('./pages/machines/machines.component').then(m => m.MachinesComponent),
+           // component:  MachinesComponent
           }
         ]
       },

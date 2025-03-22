@@ -258,7 +258,8 @@ mat-toolbar {
 }
 
 .btnListado:hover {
-    filter: brightness(1.5);
+    /* filter: brightness(1.2); */
+    font-weight: bold;
     color: #e5e8eec4;
     background-color: #1c3660 !important;
 }
